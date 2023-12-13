@@ -22,11 +22,96 @@ public class InputView {
         }
     }
 
-    public static String readSelectedFeature() {
+    public static String readFeature() {
         System.out.println(PROMPT_MESSAGE);
         for (Feature feature : Feature.values()) {
             System.out.println(feature.getDescription());
         }
         return Console.readLine();
+    }
+
+    public static String readCourseLevelMission() {
+        System.out.println("\n#############################################");
+        System.out.println("과정: " + Course.BACKEND.getDescription() + " | " + Course.FRONTEND.getDescription());
+        System.out.println("미션:");
+        for (Level level : Level.values()) {
+            System.out.println("  - " + level.getDescription() + ": " + getMissionsForLevel(level));
+        }
+        System.out.println("#############################################");
+        System.out.println("과정, 레벨, 미션을 선택하세요.");
+        System.out.println("ex) " + Course.BACKEND.getDescription() + ", " + Level.LEVEL1.getDescription() + ", " + Mission.CAR_RACING.getDescription());
+        return Console.readLine();
+    }
+
+    private static String getMissionsForLevel(Level level) {
+        if (level.getMissions().length == 0) {
+            return "";
+        }
+
+        StringBuilder missions = new StringBuilder();
+        for (Mission mission : level.getMissions()) {
+            missions.append(mission.getDescription()).append(" | ");
+        }
+        return missions.toString().replaceAll(" \\| $", "");  // 마지막에 추가된 " | " 제거
+    }
+
+    public enum Course {
+        BACKEND("백엔드"),
+        FRONTEND("프론트엔드");
+
+        private final String description;
+
+        Course(String description) {
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+    }
+
+    public enum Level {
+        LEVEL1("레벨1", Mission.CAR_RACING, Mission.LOTTO, Mission.BASEBALL),
+        LEVEL2("레벨2", Mission.CART, Mission.PAYMENT, Mission.SUBWAY),
+        LEVEL3("레벨3"),
+        LEVEL4("레벨4", Mission.PERFORMANCE, Mission.DEPLOYMENT),
+        LEVEL5("레벨5");
+
+        private final String description;
+        private final Mission[] missions;
+
+        Level(String description, Mission... missions) {
+            this.description = description;
+            this.missions = missions;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public Mission[] getMissions() {
+            return missions;
+        }
+    }
+
+    public enum Mission {
+        CAR_RACING("자동차경주"),
+        LOTTO("로또"),
+        BASEBALL("숫자야구게임"),
+        CART("장바구니"),
+        PAYMENT("결제"),
+        SUBWAY("지하철노선도"),
+        PERFORMANCE("성능개선"),
+        DEPLOYMENT("배포");
+
+        private final String description;
+
+        Mission(String description) {
+            this.description = description;
+        }
+
+        public String getDescription() {
+            return description;
+        }
     }
 }
