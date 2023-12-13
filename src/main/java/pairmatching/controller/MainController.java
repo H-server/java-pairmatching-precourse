@@ -1,5 +1,6 @@
 package pairmatching.controller;
 
+import pairmatching.model.PairMatch;
 import pairmatching.view.InputView;
 
 public class MainController {
@@ -11,6 +12,7 @@ public class MainController {
     }
 
     private void matchPair() {
-        InputView.readCourseLevelMission();
+        PairMatch pairMatch = new PairMatch();
+        pairMatch.setPair(InputView.readCourseLevelMission());
     }
 }

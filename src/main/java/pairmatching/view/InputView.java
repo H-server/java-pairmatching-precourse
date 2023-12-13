@@ -1,6 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import pairmatching.util.Course;
 
 public class InputView {
     private static final String PROMPT_MESSAGE = "기능을 선택하세요.";
@@ -55,20 +56,7 @@ public class InputView {
         return missions.toString().replaceAll(" \\| $", "");  // 마지막에 추가된 " | " 제거
     }
 
-    public enum Course {
-        BACKEND("백엔드"),
-        FRONTEND("프론트엔드");
 
-        private final String description;
-
-        Course(String description) {
-            this.description = description;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-    }
 
     public enum Level {
         LEVEL1("레벨1", Mission.CAR_RACING, Mission.LOTTO, Mission.BASEBALL),
