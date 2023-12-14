@@ -3,8 +3,8 @@ package pairmatching.view;
 import java.util.List;
 import pairmatching.model.PairResult;
 import pairmatching.util.Course;
-import pairmatching.view.InputView.Level;
-import pairmatching.view.InputView.Mission;
+import pairmatching.util.Level;
+import pairmatching.util.Mission;
 
 public class OutputView {
     private static final String REMATCHING_PROMPT = "매칭 정보가 있습니다. 다시 매칭하시겠습니까?\n네 | 아니오";
