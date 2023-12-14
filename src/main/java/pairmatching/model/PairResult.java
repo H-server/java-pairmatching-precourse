@@ -12,11 +12,15 @@ public class PairResult {
 
     public static void addPairMatchResult(List<String> courseLevelMission, List<List<String>> pairResult) {
         pairMatchResult.put(new ArrayList<>(courseLevelMission), new ArrayList<>(pairResult));
-        OutputView.printPairMatchResult(pairResult);
+        OutputView.printPairMatchResult(courseLevelMission);
     }
 
     public static boolean checkPairMatchResult(List<String> courseLevelMission){
         return pairMatchResult.containsKey(courseLevelMission);
+    }
+
+    public static List<List<String>> getPairResult(List<String> courseLevelMission) {
+        return pairMatchResult.get(courseLevelMission);
     }
 
     public static boolean checkSameLevelUniquePair(List<String> courseLevelMission, List<List<String>> pairResult) {

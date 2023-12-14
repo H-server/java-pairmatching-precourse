@@ -22,7 +22,22 @@ public class MainController {
             OutputView.printCourseMission();
             matchController(pairMatch);
         }
+        if(selectedFeature.equals("2")) {
+            OutputView.printCourseMission();
+            inquiryPairResult();
+        }
         return selectedFeature;
+    }
+
+    private void inquiryPairResult() {
+        List<String> courseLevelMission = Util.splitByComma(InputView.readCourseLevelMission());
+        boolean hasResult = PairResult.checkPairMatchResult(courseLevelMission);
+        if(!hasResult) {
+            throw new IllegalStateException("[ERROR] 해당하는 페어 결과가 없습니다.");
+        }
+        if(hasResult) {
+            OutputView.printPairMatchResult(courseLevelMission);
+        }
     }
 
     private void matchController(PairMatch pairMatch) {

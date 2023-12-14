@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.util.Course;
 
 public class InputView {
-    private static final String PROMPT_MESSAGE = "기능을 선택하세요.";
+    private static final String PROMPT_MESSAGE = "\n기능을 선택하세요.";
 
     public enum Feature {
         PAIR_MATCHING("1. 페어 매칭"),
