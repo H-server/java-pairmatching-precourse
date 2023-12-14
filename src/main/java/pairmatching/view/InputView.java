@@ -4,6 +4,17 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.util.Course;
 import pairmatching.util.Level;
 import pairmatching.util.Mission;
+import pairmatching.util.Validator;
+
+@FunctionalInterface
+interface InputReader {
+    String readInput();
+}
+
+@FunctionalInterface
+interface ValidateReader {
+    void validate(String userInput);
+}
 
 public class InputView {
     private static final String PROMPT_MESSAGE = "\n기능을 선택하세요.";
@@ -42,5 +53,27 @@ public class InputView {
     public static String readReMatching() {
         OutputView.printReMatchingPrompt();
         return Console.readLine();
+    }
+
+    public static String getValidatedInput(InputReader inputReader, ValidateReader validateReader, String errorMessage) {
+        String userInput;
+        while (true) {
+            try {
+                userInput = inputReader.readInput();
+                validateReader.validate(userInput);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(errorMessage);
+            }
+        }
+        return userInput;
+    }
+
+    public static String getValidatedCourseLevelMission() {
+        return getValidatedInput(InputView::readCourseLevelMission, Validator::validateCourseLevelMission, "[ERROR] Invalid course level mission. Please try again.");
+    }
+
+    public static String getValidatedFeature() {
+        return getValidatedInput(InputView::readFeature, Validator::validateSelectedFeature, "[ERROR] Please try again.");
     }
 }

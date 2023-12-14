@@ -9,10 +9,11 @@ public class Validator {
         }
     }
 
-    public static void validateCourseLevelMission(List<String> input) {
-        validateCourse(input.get(0));
-        validateLevel(input.get(1));
-        validateMission(input.get(2));
+    public static void validateCourseLevelMission(String input) {
+        List<String> splitedInput =  Util.splitByComma(input);
+        validateCourse(splitedInput.get(0));
+        validateLevel(splitedInput.get(1));
+        validateMission(splitedInput.get(2));
     }
 
     public static void validateCourse(String input) {

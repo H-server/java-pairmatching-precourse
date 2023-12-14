@@ -9,7 +9,7 @@ public class MainController {
     public void execute() {
         String selectedFeature;
         do {
-            selectedFeature = readFeature();
+            selectedFeature = InputView.getValidatedFeature();
             performSelectedFeature(selectedFeature);
         } while (!selectedFeature.equals("Q"));
     }
@@ -28,19 +28,5 @@ public class MainController {
             PairResult.resetPairMatchResult();
             OutputView.printResetMessage();
         }
-    }
-
-    private String readFeature() {
-        String selectedFeature;
-        while(true) {
-            try {
-                selectedFeature = InputView.readFeature();
-                Validator.validateSelectedFeature(selectedFeature);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        return selectedFeature;
     }
 }

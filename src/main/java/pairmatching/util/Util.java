@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import pairmatching.view.InputView;
 
 public class Util {
     public static List<String> splitByComma(String input) {
