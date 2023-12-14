@@ -16,12 +16,16 @@ import java.util.Map;
 import pairmatching.util.Util;
 
 public class PairMatch {
-    public void setPair(String input) {
-        List<String> courseLevelMission = Util.splitByComma(input);
+    public void setPair(List<String> courseLevelMission) {
+
+
+        // 이미 매칭한 결과가 있는지 확인
+        PairResult.checkPairMatchResult(courseLevelMission);
+
         List<String> crewNames = getCrewNames(courseLevelMission.get(0));
         List<List<String>> pairResult = createPairs(crewNames);
-        Map<List<String>, List<List<String>>> pairMatchResult = createPairMatchResult(courseLevelMission, pairResult);
-        System.out.println(pairMatchResult);
+        PairResult.addPairMatchResult(courseLevelMission, pairResult);
+
     }
 
     private List<String> getCrewNames(String courseDescription) {
@@ -35,6 +39,7 @@ public class PairMatch {
     }
 
     private List<List<String>> createPairs(List<String> crewNames) {
+        // 같은 레벨에서 만난 적이 있는가? 3회까지 안 돼?
         List<String> shuffledCrew = Randoms.shuffle(crewNames);
         List<String> pair = new ArrayList<>();
         List<List<String>> pairResult = new ArrayList<>();
@@ -50,12 +55,6 @@ public class PairMatch {
         }
         return pairResult;
     } // 메서드 라인 줄이기
-
-    private Map<List<String>, List<List<String>>> createPairMatchResult(List<String> courseLevelMission, List<List<String>> pairResult) {
-        Map<List<String>, List<List<String>>> pairMatchResult = new HashMap<>();
-        pairMatchResult.put(new ArrayList<>(courseLevelMission), new ArrayList<>(pairResult));
-        return pairMatchResult;
-    }
 
     private List<String> readAllLines(String filePath) {
         List<String> names = null;

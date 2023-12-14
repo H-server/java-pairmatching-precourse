@@ -32,31 +32,10 @@ public class InputView {
     }
 
     public static String readCourseLevelMission() {
-        System.out.println("\n#############################################");
-        System.out.println("과정: " + Course.BACKEND.getDescription() + " | " + Course.FRONTEND.getDescription());
-        System.out.println("미션:");
-        for (Level level : Level.values()) {
-            System.out.println("  - " + level.getDescription() + ": " + getMissionsForLevel(level));
-        }
-        System.out.println("#############################################");
         System.out.println("과정, 레벨, 미션을 선택하세요.");
         System.out.println("ex) " + Course.BACKEND.getDescription() + ", " + Level.LEVEL1.getDescription() + ", " + Mission.CAR_RACING.getDescription());
         return Console.readLine();
     }
-
-    private static String getMissionsForLevel(Level level) {
-        if (level.getMissions().length == 0) {
-            return "";
-        }
-
-        StringBuilder missions = new StringBuilder();
-        for (Mission mission : level.getMissions()) {
-            missions.append(mission.getDescription()).append(" | ");
-        }
-        return missions.toString().replaceAll(" \\| $", "");  // 마지막에 추가된 " | " 제거
-    }
-
-
 
     public enum Level {
         LEVEL1("레벨1", Mission.CAR_RACING, Mission.LOTTO, Mission.BASEBALL),
@@ -101,5 +80,10 @@ public class InputView {
         public String getDescription() {
             return description;
         }
+    }
+
+    public static String readReMatching() {
+        OutputView.printReMatchingPrompt();
+        return Console.readLine();
     }
 }

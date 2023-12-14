@@ -1,6 +1,5 @@
 package pairmatching;
 
-import jdk.jfr.internal.tool.Main;
 import pairmatching.controller.MainController;
 
 public class Application {
