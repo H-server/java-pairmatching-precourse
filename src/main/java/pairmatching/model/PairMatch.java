@@ -17,15 +17,27 @@ import pairmatching.util.Util;
 
 public class PairMatch {
     public void setPair(List<String> courseLevelMission) {
-
-
         // 이미 매칭한 결과가 있는지 확인
         PairResult.checkPairMatchResult(courseLevelMission);
 
         List<String> crewNames = getCrewNames(courseLevelMission.get(0));
-        List<List<String>> pairResult = createPairs(crewNames);
+        List<List<String>> pairResult = createUniquePairs(courseLevelMission, crewNames);
         PairResult.addPairMatchResult(courseLevelMission, pairResult);
+    }
 
+    private List<List<String>> createUniquePairs(List<String> courseLevelMission, List<String> crewNames) {
+        int maxTries = 3;
+        int count = 0;
+        List<List<String>> pairResult;
+        do {
+            pairResult = createPairs(crewNames);
+            count++;
+        } while (count < maxTries && !PairResult.checkSameLevelUniquePair(courseLevelMission, pairResult));
+
+        if (count == maxTries) {
+            throw new IllegalStateException("[ERROR] 매칭 시도 횟수 초과했습니다.");
+        }
+        return pairResult;
     }
 
     private List<String> getCrewNames(String courseDescription) {
@@ -39,7 +51,6 @@ public class PairMatch {
     }
 
     private List<List<String>> createPairs(List<String> crewNames) {
-        // 같은 레벨에서 만난 적이 있는가? 3회까지 안 돼?
         List<String> shuffledCrew = Randoms.shuffle(crewNames);
         List<String> pair = new ArrayList<>();
         List<List<String>> pairResult = new ArrayList<>();
