@@ -10,10 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import pairmatching.util.Util;
+import pairmatching.view.OutputView;
 
 public class PairMatch {
     public void setPair(List<String> courseLevelMission) {

@@ -1,5 +1,6 @@
 package pairmatching.view;
 
+import java.util.List;
 import pairmatching.util.Course;
 import pairmatching.view.InputView.Level;
 import pairmatching.view.InputView.Mission;
@@ -31,5 +32,12 @@ public class OutputView {
             missions.append(mission.getDescription()).append(" | ");
         }
         return missions.toString().replaceAll(" \\| $", "");  // 마지막에 추가된 " | " 제거
+    }
+
+    public static void printPairMatchResult(List<List<String>> pairResult) {
+        System.out.println("\n페어 매칭 결과입니다.");
+        for (List<String> pair : pairResult) {
+            System.out.println(String.join(" : ", pair));
+        }
     }
 }

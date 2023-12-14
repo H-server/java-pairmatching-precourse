@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import pairmatching.view.OutputView;
 
 public class PairResult {
     private static Map<List<String>, List<List<String>>> pairMatchResult = new HashMap<>();
 
     public static void addPairMatchResult(List<String> courseLevelMission, List<List<String>> pairResult) {
         pairMatchResult.put(new ArrayList<>(courseLevelMission), new ArrayList<>(pairResult));
+        OutputView.printPairMatchResult(pairResult);
     }
 
     public static boolean checkPairMatchResult(List<String> courseLevelMission){
