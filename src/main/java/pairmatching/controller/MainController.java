@@ -26,6 +26,10 @@ public class MainController {
             OutputView.printCourseMission();
             inquiryPairResult();
         }
+        if(selectedFeature.equals("3")) {
+            PairResult.resetPairMatchResult();
+            OutputView.printResetMessage();
+        }
         return selectedFeature;
     }
 

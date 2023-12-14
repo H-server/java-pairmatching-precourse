@@ -39,4 +39,8 @@ public class PairResult {
         }
         return true;
     }
+
+    public static void resetPairMatchResult() {
+        pairMatchResult = new HashMap<>();
+    }
 }
