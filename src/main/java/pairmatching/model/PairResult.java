@@ -33,11 +33,11 @@ public class PairResult {
                         .filter(matchingPairs::contains)
                         .collect(Collectors.toList());
                 if (!commonElements.isEmpty()) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     public static void resetPairMatchResult() {
