@@ -11,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import pairmatching.view.OutputView;
 
 public class PairMatch {
     public void setPair(List<String> courseLevelMission) {
