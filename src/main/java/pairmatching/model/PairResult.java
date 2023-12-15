@@ -24,6 +24,7 @@ public class PairResult {
         return pairMatchResult.get(courseLevelMission);
     }
 
+
     public static boolean checkSameLevelUniquePair(List<String> courseLevelMission, List<List<String>> pairResult) {
         return pairMatchResult.keySet().stream()
                 .filter(key -> key.subList(0, 2).equals(courseLevelMission.subList(0, 2)))
