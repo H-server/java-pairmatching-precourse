@@ -33,7 +33,7 @@ public class PairMatch {
         do {
             pairResult = createPairs(crewNames);
             count++;
-        } while (count < maxTries && PairResult.checkSameLevelUniquePair(courseLevelMission, pairResult));
+        } while (count < maxTries && !PairResult.checkSameLevelUniquePair(courseLevelMission, pairResult));
 
         if (count == maxTries) {
             throw new IllegalStateException("[ERROR] 매칭 시도 횟수 초과했습니다.");

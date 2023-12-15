@@ -1,6 +1,7 @@
 package pairmatching.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,20 +25,13 @@ public class PairResult {
     }
 
     public static boolean checkSameLevelUniquePair(List<String> courseLevelMission, List<List<String>> pairResult) {
-        List<List<String>> matchingPairs;
-        for (List<String> key : pairMatchResult.keySet()) {
-            if (key.subList(0, 2).equals(courseLevelMission.subList(0, 2))) {
-                matchingPairs = pairMatchResult.get(key);
-                List<List<String>> commonElements = pairResult.stream()
-                        .distinct()
-                        .filter(matchingPairs::contains)
-                        .collect(Collectors.toList());
-                if (!commonElements.isEmpty()) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return pairMatchResult.keySet().stream()
+                .filter(key -> key.subList(0, 2).equals(courseLevelMission.subList(0, 2)))
+                .anyMatch(key -> hasCommonPairs(pairMatchResult.get(key), pairResult));
+    }
+
+    private static boolean hasCommonPairs(List<List<String>> matchingPairs, List<List<String>> newPairs) {
+        return Collections.disjoint(matchingPairs, newPairs);
     }
 
     public static void resetPairMatchResult() {
